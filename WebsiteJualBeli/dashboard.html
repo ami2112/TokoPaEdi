@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #253858;
+            color: white;
+            padding: 20px 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 24px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .stats {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+            color: #1d3c6a;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        th {
+            background: #fafbfc;
+            color: #555;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .status.active {
+            background: #2f9e44;
+        }
+
+        .status.pending {
+            background: #f59f00;
+        }
+
+        .status.danger {
+            background: #d6336c;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="grid stats">
+            <div class="card">
+                <h2>Total Sales</h2>
+                <p>Rp 120.000.000</p>
+            </div>
+            <div class="card">
+                <h2>New Orders</h2>
+                <p>86</p>
+            </div>
+            <div class="card">
+                <h2>Customers</h2>
+                <p>1.280</p>
+            </div>
+            <div class="card">
+                <h2>Products</h2>
+                <p>64</p>
+            </div>
+        </div>
+        <div class="section-title" style="margin-top: 32px;">
+            <h2>Recent Activity</h2>
+            <span>Updated just now</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#A1045</td>
+                    <td>Andi</td>
+                    <td>Rp 2.150.000</td>
+                    <td><span class="status active">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>#A1046</td>
+                    <td>Siti</td>
+                    <td>Rp 870.000</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                    <td>#A1047</td>
+                    <td>Budi</td>
+                    <td>Rp 1.430.000</td>
+                    <td><span class="status active">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>#A1048</td>
+                    <td>Rina</td>
+                    <td>Rp 3.214.000</td>
+                    <td><span class="status danger">Returned</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="summary" style="margin-top: 32px;">
+            <div class="card">
+                <h2>Monthly Visitors</h2>
+                <p>34.520</p>
+            </div>
+            <div class="card">
+                <h2>Conversion Rate</h2>
+                <p>5.4%</p>
+            </div>
+            <div class="card">
+                <h2>Support Tickets</h2>
+                <p>12</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
