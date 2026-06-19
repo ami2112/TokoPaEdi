@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            padding: 16px;
+        }
+
+        .display {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            text-align: right;
+            font-size: 28px;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #f9f9f9;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 56px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            filter: brightness(0.95);
+        }
+
+        .button-number {
+            background: #e0e0e0;
+        }
+
+        .button-operator {
+            background: #ffb74d;
+            color: #1a1a1a;
+        }
+
+        .button-equals {
+            grid-column: span 2;
+            background: #4caf50;
+            color: white;
+        }
+
+        .button-clear {
+            background: #f06292;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button class="button-clear" id="clear">C</button>
+            <button class="button-operator" data-value="/">/</button>
+            <button class="button-operator" data-value="*">*</button>
+            <button class="button-operator" data-value="-">-</button>
+            <button class="button-number" data-value="7">7</button>
+            <button class="button-number" data-value="8">8</button>
+            <button class="button-number" data-value="9">9</button>
+            <button class="button-operator" data-value="+">+</button>
+            <button class="button-number" data-value="4">4</button>
+            <button class="button-number" data-value="5">5</button>
+            <button class="button-number" data-value="6">6</button>
+            <button class="button-number" data-value="1">1</button>
+            <button class="button-number" data-value="2">2</button>
+            <button class="button-number" data-value="3">3</button>
+            <button class="button-number" data-value="0">0</button>
+            <button class="button-equals" id="equals">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('button[data-value]');
+        const clearButton = document.getElementById('clear');
+        const equalsButton = document.getElementById('equals');
+
+        let expression = '';
+
+        function updateDisplay(value) {
+            display.textContent = value || '0';
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                expression += button.dataset.value;
+                updateDisplay(expression);
+            });
+        });
+
+        clearButton.addEventListener('click', () => {
+            expression = '';
+            updateDisplay('0');
+        });
+
+        equalsButton.addEventListener('click', () => {
+            if (!expression) return;
+            try {
+                const result = Function('return ' + expression)();
+                expression = String(result);
+                updateDisplay(expression);
+            } catch (error) {
+                updateDisplay('Error');
+                expression = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

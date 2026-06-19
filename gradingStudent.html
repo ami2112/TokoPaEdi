@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grading</title>
+</head>
+
+<body>
+    <h1>Student Grading</h1>
+    <label>
+        Name:
+        <input id="name" type="text">
+    </label>
+    <br>
+    <label>
+        Mid-exam score:
+        <input id="mid" type="number" step="any">
+    </label>
+    <br>
+    <label>
+        End-exam score:
+        <input id="end" type="number" step="any">
+    </label>
+    <br>
+    <label>
+        Assessment score:
+        <input id="assessment" type="number" step="any">
+    </label>
+    <br>
+    <button id="calculate">Calculate Grade</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('calculate').addEventListener('click', function () {
+            var name = document.getElementById('name').value.trim();
+            var mid = parseFloat(document.getElementById('mid').value);
+            var end = parseFloat(document.getElementById('end').value);
+            var assessment = parseFloat(document.getElementById('assessment').value);
+
+            if (!name) {
+                document.getElementById('result').textContent = 'Please enter the student name.';
+                return;
+            }
+            if (isNaN(mid) || isNaN(end) || isNaN(assessment)) {
+                document.getElementById('result').textContent = 'Invalid input. Please enter numeric scores.';
+                return;
+            }
+
+            var average = (mid + end + assessment) / 3;
+            var grade;
+
+            if (average >= 85) {
+                grade = 'A';
+            } else if (average >= 70) {
+                grade = 'B';
+            } else if (average >= 55) {
+                grade = 'C';
+            } else if (average >= 40) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            var resultElem = document.getElementById('result');
+            resultElem.innerHTML =
+                '<p>Student: ' + name + '</p>' +
+                '<p>Mid-exam: ' + mid + '</p>' +
+                '<p>End-exam: ' + end + '</p>' +
+                '<p>Assessment: ' + assessment + '</p>' +
+                '<p>Average: ' + average.toFixed(2) + '</p>' +
+                '<p>Grade: ' + grade + '</p>';
+
+            // simple HTML escape for name
+            function escapeHtml(text) {
+                var map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return String(text).replace(/[&<>"']/g, function (m) { return map[m]; });
+            }
+        });
+    </script>
+</body>
+
+</html>

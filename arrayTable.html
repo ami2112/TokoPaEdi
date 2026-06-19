@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Easy Array to Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Easy Array to Table</h1>
+    <p>This simple page turns a list of friends into a table.</p>
+    <table id="friends-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        const friends = ['Alice', 'Bob', 'Carol'];
+
+        function populateTable(list) {
+            const tbody = document.querySelector('#friends-table tbody');
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td>No data available.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = list
+                .map(name => '<tr><td>' + name + '</td></tr>')
+                .join('');
+        }
+
+        populateTable(friends);
+    </script>
+</body>
+
+</html>
